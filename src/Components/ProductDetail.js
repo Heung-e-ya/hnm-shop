@@ -22,7 +22,7 @@ const ProductDetail = () => {
         <Col className="product-detail-img">
           <img width={500} src={product?.img} />
         </Col>
-        <Col>
+        <Col className="detail-text-container">
           <div className="detail-new">{product?.choice == true ? "Conscious choice" : ""}</div>
           <div className="detail-new">{product?.new == true ? "신제품" : ""}</div>
           <div>{product?.title}</div>
@@ -36,7 +36,7 @@ const ProductDetail = () => {
                 </Button>
               ))}
             </div>
-            <div>
+            <div className="add-button-container">
               <Button className="add-button" variant="dark" size="lg">
                 추가
               </Button>

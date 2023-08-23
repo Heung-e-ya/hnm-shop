@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import ProductAll from "./Components/ProductAll";
 import ProductDetail from "./Components/ProductDetail";
 import Login from "./Components/Login";
-import Navbar from "./Components/Navbar";
+import Navmenu from "./Components/Navmenu";
 import PrivateRoute from "./route/PrivateRoute";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -30,7 +30,7 @@ function App() {
   }, [authenticate]);
   return (
     <div>
-      <Navbar search={search} authenticate={authenticate} setAuthenticate={setAuthenticate} />
+      <Navmenu search={search} authenticate={authenticate} setAuthenticate={setAuthenticate} />
 
       <Routes>
         <Route path="/" element={<ProductAll />}></Route>
