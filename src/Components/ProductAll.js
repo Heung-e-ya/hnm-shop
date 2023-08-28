@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ProductsCard from "./ProductsCard";
 import { useSearchParams } from "react-router-dom";
+import { productAction } from "../redux/actions/productAction";
+import { useDispatch, useSelector } from "react-redux";
 const ProductAll = () => {
-  const [productList, setProductList] = useState([]);
+  const productList = useSelector((state) => state.product.productList);
   const [query, setQuery] = useSearchParams();
-  const getProducts = async () => {
+  const dispatch = useDispatch();
+  const getProducts = () => {
     let serachQuery = query.get("q") || "";
     console.log("쿼리값은?", serachQuery);
-    let url = `https://my-json-server.typicode.com/Heung-e-ya/hnm-shop/products?q=${serachQuery}`;
-    let response = await fetch(url);
-    let data = await response.json();
-    setProductList(data);
+    dispatch(productAction.getProducts(serachQuery));
   };
 
   useEffect(() => {
