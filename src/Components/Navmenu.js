@@ -4,12 +4,16 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { Navigate, useNavigate } from "react-router-dom";
 
+import { useDispatch, useSelector } from "react-redux";
+import { authenticateAction } from "../redux/actions/authenticateAction";
+
 import { Container, Button, Form, Nav, Navbar, Offcanvas, Row, Col, NavLink } from "react-bootstrap";
 
-const Navmenu = ({ authenticate, setAuthenticate }) => {
+const Navmenu = () => {
   const menuList = ["여성", "Divided", "남성", "신생아/유아", "아동", "H&M Home", "Sale", "지속가능성"];
   const navigate = useNavigate();
-
+  const authenticate = useSelector((state) => state.auth.authenticate);
+  const dispatch = useDispatch();
   const search = (e) => {
     if (e.key === "Enter") {
       console.log("we click this key", e.key);
@@ -23,13 +27,14 @@ const Navmenu = ({ authenticate, setAuthenticate }) => {
   };
   const goToLogin = () => {
     navigate("/login");
+    console.log("로긘 값", authenticate);
   };
   const goToHome = () => {
     navigate("/");
   };
   const LogOut = () => {
-    setAuthenticate(false);
     navigate("/");
+    dispatch({ type: "LOGOUT", payload: { authenticate } });
   };
   return (
     <div>
